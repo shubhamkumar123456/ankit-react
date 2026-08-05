@@ -15,9 +15,10 @@
 
 // Functional component --> can be declare same as functions in js but functional component return a react element ( html tag). it consist of html css and js code
 
-
+// virtual Dom --> it is a copy of real Dom, whenever any component state or props changes react creates a new virtual DOM tree. then it compares it to the previous tree and then apply minimum set of changes neccessary to real DOM
 
 // State --> are used to store data that can be changed over a period of time
+
 // Hooks -->hooks are the function. with the help of hooks you can define state in your react application example --> useState , useEffect, useRef , useContext etc
 
 
