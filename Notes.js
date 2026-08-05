@@ -17,6 +17,12 @@
 
 
 
+// State --> are used to store data that can be changed over a period of time
+// Hooks -->hooks are the function. with the help of hooks you can define state in your react application example --> useState , useEffect, useRef , useContext etc
+
+
+// a) useStateHook --> is used to store the value and can also be used to re-render the component. it takes an array of two argument a variable to store a value and second is a function to update the value of variable. whenever you call the update function it will re-render the component
+
 // normal js function
 function xyz(){
     console.log("hello");
