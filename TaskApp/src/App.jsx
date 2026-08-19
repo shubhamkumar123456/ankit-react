@@ -2,6 +2,7 @@ import React from 'react'
 import './App.css'
 import Form from './Form'
 import CounterApp from './CounterApp'
+import Trial from './Trial'
 
 
 const App = () => {
@@ -9,8 +10,8 @@ const App = () => {
     <div>
       {/* <h1>This is Task App</h1>
       <Form/> */}
-      <CounterApp/>
-
+      {/* <CounterApp/> */}
+        <Trial/>
     </div>
   )
 }

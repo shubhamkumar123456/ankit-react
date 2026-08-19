@@ -27,9 +27,7 @@
 // normal js function
 function xyz(){
     console.log("hello");
-    return 10
-
-  
+    return 10 
 }
 
 xyz()  // function calling  // 10
