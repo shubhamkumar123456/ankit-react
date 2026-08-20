@@ -1,3 +1,28 @@
 .heading{
   text-align: center;
 }
+
+
+.calculator{
+  border: 1px solid blue;
+  width: 400px;
+  height: 500px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.calculator span{
+  border-bottom: 1px solid;
+  display: block;
+  padding: 10px;
+  text-align: right;
+  margin-bottom: 5px;
+}
+
+.calculatorButtons{
+  display: grid;
+  grid-template-columns: repeat(3,auto);
+  background-color: aqua;
+  height: 100%;
+}
