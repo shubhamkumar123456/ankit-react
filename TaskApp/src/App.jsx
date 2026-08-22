@@ -4,6 +4,8 @@ import Form from './Form'
 import CounterApp from './CounterApp'
 import Trial from './Trial'
 import Calculator from './Calculator'
+import ShowData from './ShowData'
+import ExpenseTracker from './ExpenseTracker'
 
 const App = () => {
   return (
@@ -12,7 +14,9 @@ const App = () => {
       <Form/> */}
       {/* <CounterApp/> */}
         {/* <Trial/> */}
-        <Calculator/>
+        {/* <Calculator/> */}
+        {/* <ShowData/> */}
+        <ExpenseTracker/>
     </div>
   )
 }

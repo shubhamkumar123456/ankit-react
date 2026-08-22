@@ -1,0 +1,41 @@
+
+.ExpensePageForm{
+    /* background-color: aqua; */
+    color: white;
+    background-color: black;
+    padding: 20px;
+    width: max-content;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    border-radius: 20px;
+    width: 600px;
+
+}
+.ExpensePageForm input{
+    padding: 10px;
+    border-radius: 10px;
+    width: 200px;
+}
+.ExpensePageForm button{
+    padding: 10px;
+    border-radius: 10px;
+    width: 100px;
+}
+
+.table{
+    margin:10px auto;
+    width: 600px;
+    background-color: black;
+    color: white;
+    border-radius: 20px;
+    padding: 10px;
+}
+
+.table thead th{
+    border-bottom: 1px solid white;
+}
+.table tbody td{
+    border-bottom: 1px solid white;
+}
