@@ -1,20 +1,50 @@
-import React from 'react'
+import React, { useRef, useState } from 'react'
 import './Expense.css'
 const ExpenseTracker = () => {
-    let arr = [
-        {id:1, taskName:"html study" ,status:"incompleted",date:"17-08-2026"},
-        {id:2, taskName:"Js study" ,status:"completed",date:"18-08-2026"},
-        {id:3, taskName:"Css study" ,status:"incompleted",date:"18-08-2026"},
-    ]
+
+    let expenseRef = useRef(); // {current: undefined}
+    let priceRef = useRef();  // {current: undefined}
+    let dateRef = useRef();  // {current: undefined}
+
+
+    const [arr , setArr] = useState([
+        {id:1, expenseName:"movies" ,price:350,date:"17-08-2026"},
+        {id:2, expenseName:"dinner" ,price:700,date:"18-08-2026"},
+        {id:3, expenseName:"water park" ,price:1000,date:"18-08-2026"},
+    ])
+
+    function handleAddTask(e){
+        e.preventDefault();
+       let obj = {
+            id: arr.length +1,
+            expenseName: expenseRef.current.value,
+            price:priceRef.current.value,
+            date:dateRef.current.value
+       }
+       
+       let copyArr = [...arr]  //[{}, {}, {}]
+       copyArr.push(obj);  //[{}, {}, {}, {}]
+       console.log(copyArr)
+       setArr(copyArr)
+    }
+
+
+
+    function handleDelete(obj , i){
+        console.log(obj)
+        console.log(i)
+    }
+  
     
   return (
     <div>
       <h1 style={{textAlign:"center",color:"green"}}>Expense Tracker App </h1>
         
       <form className='ExpensePageForm' action="">
-        <input type="text" placeholder='enter a task name...' />
-        <input type="date" placeholder='enter Date' />
-        <button>Add Task</button>
+        <input ref={expenseRef} type="text" placeholder='enter a expense name...' />
+        <input ref={priceRef} type="number" placeholder='enter price' />
+        <input ref={dateRef} type="date" placeholder='enter Date' />
+        <button onClick={handleAddTask}>add Task</button>
       </form>
 
      
@@ -23,8 +53,8 @@ const ExpenseTracker = () => {
             <thead>
                 <tr>
                     <th>Sno</th>
-                    <th>TaskName</th>
-                    <th>Status</th>
+                    <th>Expense Name</th>
+                    <th>Price</th>
                     <th>Date</th>
                     <th></th>
                 </tr>
@@ -33,12 +63,12 @@ const ExpenseTracker = () => {
                 {arr.map((val, i)=>{
                     //  {id:2, taskName:"Js study" ,status:"completed",date:"18-08-2026"}, 2
                     //  2 == 2 true
-                    return <tr >
+                    return <tr key={val.id} >
                         <td style={{borderBottom: i== arr.length-1? "none":"1px solid white"}}>{val.id}</td>
-                        <td style={{borderBottom: i== arr.length-1?"none":"1px solid white" }} >{val.taskName}</td>
-                        <td style={{borderBottom: i== arr.length-1?"none":"1px solid white"}}>{val.status}</td>
+                        <td style={{borderBottom: i== arr.length-1?"none":"1px solid white" }} >{val.expenseName}</td>
+                        <td style={{borderBottom: i== arr.length-1?"none":"1px solid white"}}>{val.price}</td>
                         <td style={{borderBottom: i== arr.length-1?"none":"1px solid white"}}>{val.date}</td>
-                        <td style={{borderBottom: i== arr.length-1?"none":"1px solid white"}}><button>Delete</button></td>
+                        <td style={{borderBottom: i== arr.length-1?"none":"1px solid white"}}><button onClick={()=>handleDelete(val, i)}>Delete</button></td>
                     </tr>
                 })}
             </tbody>

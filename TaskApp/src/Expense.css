@@ -10,7 +10,7 @@
     align-items: center;
     gap: 20px;
     border-radius: 20px;
-    width: 600px;
+    width: max-content;
 
 }
 .ExpensePageForm input{
@@ -26,11 +26,12 @@
 
 .table{
     margin:10px auto;
-    width: 600px;
+    width: 70%;
     background-color: black;
     color: white;
     border-radius: 20px;
     padding: 10px;
+    text-align: center;
 }
 
 .table thead th{
