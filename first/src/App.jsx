@@ -6,6 +6,8 @@ import './App.css'
 
 import Home from './Home'
 import About from './About'
+import HookUseEffecct from './HookUseEffecct'
+import ShowApi from './ShowApi'
 // import X from './Demo'
 
 
@@ -14,13 +16,15 @@ function App() {
 
   return (
     <div>
-      <Home/>
+      {/* <Home/>
 
       <About/>
       <About/>
       <About/>
       <About/>
-      <About/>
+      <About/> */}
+      <HookUseEffecct/>
+      {/* <ShowApi/> */}
       
     </div>
   )

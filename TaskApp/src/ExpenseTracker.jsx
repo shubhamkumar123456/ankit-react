@@ -1,5 +1,6 @@
 import React, { useRef, useState } from 'react'
 import './Expense.css'
+import { toast } from 'react-toastify';
 const ExpenseTracker = () => {
 
     let expenseRef = useRef(); // {current: undefined}
@@ -8,10 +9,8 @@ const ExpenseTracker = () => {
 
 
     const [arr , setArr] = useState([
-        {id:1, expenseName:"movies" ,price:350,date:"17-08-2026"},
-        {id:2, expenseName:"dinner" ,price:700,date:"18-08-2026"},
-        {id:3, expenseName:"water park" ,price:1000,date:"18-08-2026"},
-    ])
+        // {id:1, expenseName:"petrol", date:""}
+    ]) //
 
     function handleAddTask(e){
         e.preventDefault();
@@ -21,10 +20,28 @@ const ExpenseTracker = () => {
             price:priceRef.current.value,
             date:dateRef.current.value
        }
+
+       if(obj.expenseName.length<=0){
+            // alert("please write expense name")
+            // toast.success() //green
+            // toast.warning() //yellow
+            toast.error("please write expense name",{position:"top-center"}) //red
+            
+            return;
+       }
+       if(!obj.price){
+            toast.error("please write price",{position:"top-center"}) //red
+            return;
+       }
+       if(!obj.date){
+            toast.error("please write date",{position:"top-center"}) //red
+            return;
+       }
        
        let copyArr = [...arr]  //[{}, {}, {}]
        copyArr.push(obj);  //[{}, {}, {}, {}]
        console.log(copyArr)
+       toast.success("expense added successfully",{position:'top-center',theme:'dark'})
        setArr(copyArr)
     }
 
@@ -33,6 +50,12 @@ const ExpenseTracker = () => {
     function handleDelete(obj , i){
         console.log(obj)
         console.log(i)
+
+        let copyArr = [...arr]
+        copyArr.splice(i , 1);
+        setArr(copyArr)
+
+
     }
   
     
@@ -47,8 +70,7 @@ const ExpenseTracker = () => {
         <button onClick={handleAddTask}>add Task</button>
       </form>
 
-     
-
+     {/* { arr.length >0 ?
       <table className='table'  cellPadding={10} cellSpacing={0}>
             <thead>
                 <tr>
@@ -72,7 +94,34 @@ const ExpenseTracker = () => {
                     </tr>
                 })}
             </tbody>
-      </table>
+      </table> : <h1 style={{textAlign:"center"}}>No Data</h1>} */}
+
+     { arr.length>0 && <table className='table'  cellPadding={10} cellSpacing={0}>
+            <thead>
+                <tr>
+                    <th>Sno</th>
+                    <th>Expense Name</th>
+                    <th>Price</th>
+                    <th>Date</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {arr.map((val, i)=>{
+                    //  {id:2, taskName:"Js study" ,status:"completed",date:"18-08-2026"}, 2
+                    //  2 == 2 true
+                    return <tr key={val.id} >
+                        <td style={{borderBottom: i== arr.length-1? "none":"1px solid white"}}>{val.id}</td>
+                        <td style={{borderBottom: i== arr.length-1?"none":"1px solid white" }} >{val.expenseName}</td>
+                        <td style={{borderBottom: i== arr.length-1?"none":"1px solid white"}}>{val.price}</td>
+                        <td style={{borderBottom: i== arr.length-1?"none":"1px solid white"}}>{val.date}</td>
+                        <td style={{borderBottom: i== arr.length-1?"none":"1px solid white"}}><button onClick={()=>handleDelete(val, i)}>Delete</button></td>
+                    </tr>
+                })}
+            </tbody>
+      </table>}
+
+      {arr.length == 0 && <h1 style={{textAlign:"center"}}>No Data</h1>}
     </div>
   )
 }

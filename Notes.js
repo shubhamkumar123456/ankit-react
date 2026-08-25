@@ -24,19 +24,24 @@
 
 // a) useStateHook --> is used to store the value and can also be used to re-render the component. it takes an array of two argument a variable to store a value and second is a function to update the value of variable. whenever you call the update function it will re-render the component
 
+// b) useRef --> can reference any react element ( used to copy any react tag to a variable)
+
+
+// c) useEffect Hook --> used to run sideeffects such updating the dom element, fetch api, it take two argument a callbackfunction and a array of dependency. if array of dependency is blank useEffect will run only one time.
+
 // normal js function
-function xyz(){
-    console.log("hello");
-    return 10 
-}
+// function xyz(){
+//     console.log("hello");
+//     return 10 
+// }
 
-xyz()  // function calling  // 10
+// xyz()  // function calling  // 10
 
 
-// functional component --> 
+// // functional component --> 
 
-function XYZ(){
-    return <h1> hello</h1>
-}
+// function XYZ(){
+//     return <h1> hello</h1>
+// }
 
-<XYZ/> //component calling  , <h1> hello</h1>
+// <XYZ/> //component calling  , <h1> hello</h1>

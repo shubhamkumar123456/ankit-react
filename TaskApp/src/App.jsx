@@ -6,6 +6,7 @@ import Trial from './Trial'
 import Calculator from './Calculator'
 import ShowData from './ShowData'
 import ExpenseTracker from './ExpenseTracker'
+import { ToastContainer, toast } from 'react-toastify';
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
         {/* <Calculator/> */}
         {/* <ShowData/> */}
         <ExpenseTracker/>
+        <ToastContainer/>
     </div>
   )
 }
