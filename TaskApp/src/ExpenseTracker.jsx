@@ -8,9 +8,10 @@ const ExpenseTracker = () => {
     let dateRef = useRef();  // {current: undefined}
 
 
-    const [arr , setArr] = useState([
-        // {id:1, expenseName:"petrol", date:""}
-    ]) //
+    // let arr1 = JSON.parse(localStorage.getItem('x'))  || [];
+
+    const [arr , setArr] = useState(JSON.parse(localStorage.getItem('x'))  || []) //
+    console.log(arr) //[]
 
     function handleAddTask(e){
         e.preventDefault();
@@ -38,11 +39,15 @@ const ExpenseTracker = () => {
             return;
        }
        
-       let copyArr = [...arr]  //[{}, {}, {}]
-       copyArr.push(obj);  //[{}, {}, {}, {}]
+       let copyArr = [...arr]  //[]
+       copyArr.push(obj);  //[{}]
        console.log(copyArr)
        toast.success("expense added successfully",{position:'top-center',theme:'dark'})
+       localStorage.setItem('x',JSON.stringify(copyArr))
        setArr(copyArr)
+       expenseRef.current.value = ""
+       priceRef.current.value = ""
+       dateRef.current.value = ""
     }
 
 
@@ -53,21 +58,51 @@ const ExpenseTracker = () => {
 
         let copyArr = [...arr]
         copyArr.splice(i , 1);
+        localStorage.setItem('x',JSON.stringify(copyArr))
         setArr(copyArr)
 
 
     }
-  
+    
+    const [filteredArr, setfilteredArr] = useState([]);
+
+    function handleSearch(e){
+        // console.log(e.target)  //tag
+        console.log(e.target.value)  // --> sh
+
+        let ans = arr.filter((obj)=>obj.expenseName.toLowerCase().includes(e.target.value.toLowerCase()) || obj.price ===e.target.value ) // [{},{}, filtered , matched obj]
+        console.log(ans)
+        setfilteredArr(ans)
+
+    }
+
+    let displayArr = filteredArr.length==0 ? arr : filteredArr;
+
+
+
+    // let text = "hello how are you";
+    // console.log(text.includes(''));
+
+
+
+
+
     
   return (
     <div>
       <h1 style={{textAlign:"center",color:"green"}}>Expense Tracker App </h1>
+
         
       <form className='ExpensePageForm' action="">
         <input ref={expenseRef} type="text" placeholder='enter a expense name...' />
         <input ref={priceRef} type="number" placeholder='enter price' />
         <input ref={dateRef} type="date" placeholder='enter Date' />
         <button onClick={handleAddTask}>add Task</button>
+      </form>
+
+      <form action="">
+        <input onChange={handleSearch} type="text" placeholder='search expenses' />
+        {/* <button>Submit</button> */}
       </form>
 
      {/* { arr.length >0 ?
@@ -107,7 +142,7 @@ const ExpenseTracker = () => {
                 </tr>
             </thead>
             <tbody>
-                {arr.map((val, i)=>{
+                {displayArr.map((val, i)=>{
                     //  {id:2, taskName:"Js study" ,status:"completed",date:"18-08-2026"}, 2
                     //  2 == 2 true
                     return <tr key={val.id} >
