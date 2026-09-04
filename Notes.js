@@ -45,3 +45,6 @@
 // }
 
 // <XYZ/> //component calling  , <h1> hello</h1>
+
+
+// Props --> with the help of props you can pass data from parent component to child component
