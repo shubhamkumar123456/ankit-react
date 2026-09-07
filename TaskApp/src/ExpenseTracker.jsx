@@ -11,12 +11,12 @@ const ExpenseTracker = () => {
     // let arr1 = JSON.parse(localStorage.getItem('x'))  || [];
 
     const [arr , setArr] = useState(JSON.parse(localStorage.getItem('x'))  || []) //
-    console.log(arr) //[]
+    console.log(arr) //[{id:1} {id:2}, {id:3}]
 
     function handleAddTask(e){
         e.preventDefault();
        let obj = {
-            id: arr.length +1,
+            id: arr[arr.length-1].id +1,  
             expenseName: expenseRef.current.value,
             price:priceRef.current.value,
             date:dateRef.current.value
@@ -90,6 +90,7 @@ const ExpenseTracker = () => {
     
   return (
     <div>
+        
       <h1 style={{textAlign:"center",color:"green"}}>Expense Tracker App </h1>
 
         
@@ -146,7 +147,7 @@ const ExpenseTracker = () => {
                     //  {id:2, taskName:"Js study" ,status:"completed",date:"18-08-2026"}, 2
                     //  2 == 2 true
                     return <tr key={val.id} >
-                        <td style={{borderBottom: i== arr.length-1? "none":"1px solid white"}}>{val.id}</td>
+                        <td style={{borderBottom: i== arr.length-1? "none":"1px solid white"}}>{i+1}</td>
                         <td style={{borderBottom: i== arr.length-1?"none":"1px solid white" }} >{val.expenseName}</td>
                         <td style={{borderBottom: i== arr.length-1?"none":"1px solid white"}}>{val.price}</td>
                         <td style={{borderBottom: i== arr.length-1?"none":"1px solid white"}}>{val.date}</td>
