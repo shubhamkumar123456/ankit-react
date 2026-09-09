@@ -4,6 +4,7 @@ import Home from './pages/Home'
 import About from './pages/About'
 import {BrowserRouter , Routes , Route} from 'react-router-dom';
 import PNF from './pages/PNF';
+import Navbar from './components/Navbar';
 
 const App = () => {
   return (
@@ -11,6 +12,7 @@ const App = () => {
         {/* <Home/>
         <About/> */}
         <BrowserRouter>
+          <Navbar/>
             <Routes>
                   <Route path='/' element={<Home/>}/>
                   <Route path='/xyz' element={<About/>}/>
