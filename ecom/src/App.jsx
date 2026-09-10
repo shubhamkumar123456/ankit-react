@@ -5,6 +5,7 @@ import About from './pages/About'
 import {BrowserRouter , Routes , Route} from 'react-router-dom';
 import PNF from './pages/PNF';
 import Navbar from './components/Navbar';
+import ViewDetails from './pages/ViewDetails';
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
             <Routes>
                   <Route path='/' element={<Home/>}/>
                   <Route path='/xyz' element={<About/>}/>
+                  <Route path='/view' element={<ViewDetails/>}/>
                   
                   <Route path='*' element={<PNF/>}/>
             </Routes>

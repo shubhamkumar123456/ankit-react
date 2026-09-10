@@ -13,10 +13,11 @@ const ExpenseTracker = () => {
     const [arr , setArr] = useState(JSON.parse(localStorage.getItem('x'))  || []) //
     console.log(arr) //[{id:1} {id:2}, {id:3}]
 
+    // agar array khali hai to id:1 nahi to lastobject ki id me +1
     function handleAddTask(e){
         e.preventDefault();
        let obj = {
-            id: arr[arr.length-1].id +1,  
+            id: arr.length==0 ? 1 :   arr[arr.length-1].id +1,  
             expenseName: expenseRef.current.value,
             price:priceRef.current.value,
             date:dateRef.current.value
