@@ -1,9 +1,14 @@
 
 import React, { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams, useSearchParams } from "react-router-dom";
 
 const ViewDetails = () => {
   let location = useLocation();
+
+  let params = useParams() // if data is passed in params
+  let [searchParams] = useSearchParams() //if data is passed in queries
+   console.log(searchParams)
+  console.log(searchParams.get("name"))
 
   // Product received from previous page
   let product = location.state;

@@ -8,6 +8,7 @@ import Home from './Home'
 import About from './About'
 import HookUseEffecct from './HookUseEffecct'
 import ShowApi from './ShowApi'
+import Navbar from './Navbar'
 // import X from './Demo'
 
 
@@ -23,7 +24,10 @@ function App() {
       <About/>
       <About/>
       <About/> */}
-      <HookUseEffecct/>
+      <About/>
+      <Home/>
+      <Navbar/>
+      {/* <HookUseEffecct/> */}
       {/* <ShowApi/> */}
       
     </div>
