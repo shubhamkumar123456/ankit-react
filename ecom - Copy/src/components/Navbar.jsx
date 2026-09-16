@@ -1,11 +1,8 @@
 
-import React, { useContext } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import cartContext from "../context/cartContext";
 
 const Navbar = () => {
-  let ctx = useContext(cartContext);
-  console.log(ctx)  //{cartArr:[], setcartArr:function}
   return (
     <nav className="sticky top-0 z-50 border-b border-gray-200 bg-white/95 shadow-sm backdrop-blur-md">
 
@@ -50,7 +47,7 @@ const Navbar = () => {
           </Link>
 
           <Link
-            to="/about"
+            to="/xyz"
             className="rounded-lg px-4 py-2 text-sm font-medium text-gray-700 transition hover:bg-blue-50 hover:text-blue-600"
           >
             About
@@ -67,14 +64,14 @@ const Navbar = () => {
           </button>
 
           {/* Cart */}
-          <Link to={'/cart'} className="relative flex h-10 w-10 items-center justify-center rounded-lg text-xl transition hover:bg-gray-100">
+          <button className="relative flex h-10 w-10 items-center justify-center rounded-lg text-xl transition hover:bg-gray-100">
             🛒
 
             {/* Cart Badge */}
             <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-blue-600 text-[10px] font-bold text-white">
-              {ctx.cartArr.length}
+              0
             </span>
-          </Link>
+          </button>
 
           {/* Mobile Menu */}
           <button className="flex h-10 w-10 items-center justify-center rounded-lg text-xl hover:bg-gray-100 md:hidden">

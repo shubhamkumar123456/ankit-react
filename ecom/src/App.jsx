@@ -8,32 +8,22 @@ import ViewDetails from './pages/ViewDetails'
 import LoginPage from './pages/LoginPage'
 import SignupPage from './pages/SignupPage'
 import Layout from './pages/Layout'
+import Navbar from './components/Navbar'
+import CartPage from './pages/CartPage'
 
 const App = () => {
   return (
     <BrowserRouter>
-
+      <Navbar/>
       <Routes>
 
-        {/* Layout Route */}
-        <Route path="/" element={<Layout />}>
-
-          {/* Home */}
-          <Route index element={<Home />} />
-
-          {/* About */}
-          <Route path="xyz" element={<About />} />
-
-          {/* View Product */}
-          <Route path="view" element={<ViewDetails />} />
-
-        </Route>
-
-        {/* Routes without Navbar/Layout */}
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/signup" element={<SignupPage />} />
-
-        <Route path="*" element={<PNF />} />
+        <Route path="/" element={<Home/>}/>
+        <Route path="/about" element={<About/>}/>
+        <Route path="/login" element={<LoginPage/>}/>
+        <Route path="/signup" element={<SignupPage/>}/>
+        <Route path="/cart" element={<CartPage/>}/>
+        <Route path="/view" element={<ViewDetails/>}/>
+        <Route path="*" element={<PNF/>}/>
 
       </Routes>
 
