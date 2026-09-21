@@ -5,17 +5,17 @@ import { useLocation, useParams, useSearchParams } from "react-router-dom";
 const ViewDetails = () => {
   let location = useLocation();
 
-  let params = useParams() // if data is passed in params
-  let [searchParams] = useSearchParams() //if data is passed in queries
-   console.log(searchParams)
-  console.log(searchParams.get("name"))
+  // let params = useParams() // if data is passed in params
+  // let [searchParams] = useSearchParams() //if data is passed in queries
+  //  console.log(searchParams)
+  // console.log(searchParams.get("name"))
 
   // Product received from previous page
   let product = location.state;
 
   console.log(product);
 
-  const [quantity, setQuantity] = useState(1);
+
 
 
   if (!product) {

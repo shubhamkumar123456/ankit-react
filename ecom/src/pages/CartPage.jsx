@@ -3,10 +3,10 @@ import cartContext from '../context/cartContext'
 
 const CartPage = () => {
     let ctx = useContext(cartContext);
-    console.log(ctx)
+    console.log(ctx)  //{cartrr, cartAdd,removeItem}
   return (
     <div>
-      <table className='bg-black w-[70%] text-center text-white p-10 mx-auto'>
+      { ctx.cartArr.length>0 ? <table className='bg-black w-[70%] text-center text-white p-10 mx-auto'>
         <thead>
             <tr>
                 <th className='p-8'>Sno</th>
@@ -32,12 +32,12 @@ const CartPage = () => {
                         </td>
 
                         <td>{ele.price}</td>
-                        <td><button className='bg-red-950 px-3 py-2 rounded-md hover:bg-red-700'>Delete</button></td>
+                        <td><button onClick={()=>ctx.removeItem(ele)} className='bg-red-950 px-3 py-2 rounded-md hover:bg-red-700'>Delete</button></td>
                     </tr>
                 })
             }
         </tbody>
-      </table>
+      </table>  : <h1 className='text-center font-bold text-2xl mt-[50px]'>cart is empty</h1>}
     </div>
   )
 }

@@ -1,12 +1,12 @@
 
 import React, { useContext, useEffect, useState } from "react";
 import ShowTrending from "../components/ShowTrending";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import cartContext from "../context/cartContext";
 
 const Home = () => {
 
-  let ctx = useContext(cartContext);
+  let ctx = useContext(cartContext);  //{cartArr:[],cartAdd:fn }
   console.log(ctx) //{cartArr:[], setcartArr:function}
 
   const [products, setProducts] = useState([]);
@@ -39,18 +39,12 @@ const Home = () => {
 
   // ================= VIEW PRODUCT =================
   function handleView(obj) {
-    navigate(`/view`,{obj});
+    navigate(`/view`,{state:obj});
   }
 
 
 
-  // 
-  function handleCart(obj, i){
-    console.log(obj);
-    obj.quantity = 1
-    let copyArr = [...ctx.cartArr, obj];
-    ctx.setcartArr(copyArr)
-  }
+ 
 
   // ================= USE EFFECT =================
   useEffect(() => {
@@ -299,7 +293,7 @@ const Home = () => {
                 {/* Buttons */}
                 <div className="mt-5 flex gap-2">
 
-                  <button onClick={()=>handleCart(ele,i)}
+                  <button onClick={()=>ctx.cartAdd(ele)}
                     className="flex-1 rounded-xl bg-gray-900 py-3 text-sm font-semibold text-white transition hover:bg-gray-700"
                   >
                     🛒 Add to Cart
@@ -311,6 +305,12 @@ const Home = () => {
                   >
                     View
                   </button>
+                  {/* <Link to="/view"
+                   state={ele}
+                    className="rounded-xl border border-blue-600 px-4 py-3 text-sm font-semibold text-blue-600 transition hover:bg-blue-600 hover:text-white"
+                  >
+                    View
+                  </Link> */}
 
                 </div>
 

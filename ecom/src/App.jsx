@@ -10,7 +10,7 @@ import SignupPage from './pages/SignupPage'
 import Layout from './pages/Layout'
 import Navbar from './components/Navbar'
 import CartPage from './pages/CartPage'
-
+import { ToastContainer } from 'react-toastify'
 const App = () => {
   return (
     <BrowserRouter>
@@ -26,7 +26,7 @@ const App = () => {
         <Route path="*" element={<PNF/>}/>
 
       </Routes>
-
+      <ToastContainer/>
     </BrowserRouter>
   )
 }

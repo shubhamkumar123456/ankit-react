@@ -10,6 +10,7 @@ import "swiper/css/navigation";
 
 // Swiper modules
 import { Autoplay, Navigation } from "swiper/modules";
+import { Link } from "react-router-dom";
 
 const ShowTrending = (props) => {
   return (
@@ -60,7 +61,7 @@ const ShowTrending = (props) => {
 
           {/* ================= PRODUCT CARD ================= */}
 
-          <div className="group overflow-hidden rounded-2xl border border-gray-100 bg-white p-4 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+          <Link to={'/view'} state={ele} className="group overflow-hidden rounded-2xl border border-gray-100 bg-white p-4 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
 
             {/* Image */}
             <div className="flex h-[180px] items-center justify-center overflow-hidden rounded-xl bg-gray-50">
@@ -122,7 +123,7 @@ const ShowTrending = (props) => {
 
             </div>
 
-          </div>
+          </Link>
 
         </SwiperSlide>
       ))}
