@@ -4,6 +4,7 @@ import cartContext from '../context/cartContext'
 const CartPage = () => {
     let ctx = useContext(cartContext);
     console.log(ctx)  //{cartrr, cartAdd,removeItem}
+
   return (
     <div>
       { ctx.cartArr.length>0 ? <table className='bg-black w-[70%] text-center text-white p-10 mx-auto'>
@@ -26,18 +27,19 @@ const CartPage = () => {
                         <td><img className='w-[100px]' src={ele.thumbnail} alt="" /></td>
                         <td>{ele.title}</td>
                         <td>
-                            <button className='bg-blue-950 px-3 py-2 rounded-md hover:bg-blue-700'>+</button>
+                            <button onClick={()=>ctx.IncrementQuantity(ele,i)} className='bg-blue-950 px-3 py-2 rounded-md hover:bg-blue-700'>+</button>
                             <span>{ele.quantity}</span>
                             <button className='bg-blue-950 px-3 py-2 rounded-md hover:bg-blue-700'>-</button>
                         </td>
 
-                        <td>{ele.price}</td>
+                        <td>{ele.price.toFixed(2)}</td>
                         <td><button onClick={()=>ctx.removeItem(ele)} className='bg-red-950 px-3 py-2 rounded-md hover:bg-red-700'>Delete</button></td>
                     </tr>
                 })
             }
         </tbody>
       </table>  : <h1 className='text-center font-bold text-2xl mt-[50px]'>cart is empty</h1>}
+      
     </div>
   )
 }
