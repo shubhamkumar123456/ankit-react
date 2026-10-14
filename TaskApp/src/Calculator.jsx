@@ -1,7 +1,9 @@
-import React, { useRef } from 'react'
+import React, { useContext, useRef } from 'react'
+import userContext from './context/userContext'
 
 const Calculator = () => {
-
+    let ctx = useContext(userContext);
+    console.log(ctx)
     // Hook --> useRef Hook gives u object
     let tag = useRef()  // {current: undefined}
     console.log(tag)

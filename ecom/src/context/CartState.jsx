@@ -49,6 +49,7 @@ const CartState = (props) => {
 
     }
 
+    
   return (
     <cartContext.Provider value={{cartArr , cartAdd, removeItem,IncrementQuantity}}>
             {props.children}

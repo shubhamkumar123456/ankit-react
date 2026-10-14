@@ -5,6 +5,9 @@ const CartPage = () => {
     let ctx = useContext(cartContext);
     console.log(ctx)  //{cartrr, cartAdd,removeItem}
 
+
+    // create user context for protected routings
+
   return (
     <div>
       { ctx.cartArr.length>0 ? <table className='bg-black w-[70%] text-center text-white p-10 mx-auto'>
@@ -39,7 +42,7 @@ const CartPage = () => {
             }
         </tbody>
       </table>  : <h1 className='text-center font-bold text-2xl mt-[50px]'>cart is empty</h1>}
-      
+
     </div>
   )
 }
