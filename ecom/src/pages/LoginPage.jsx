@@ -23,6 +23,9 @@
 //       if(!userData.email){
 //         alert("email is required")
 //       }
+// if(userData.password.length() < 6){
+// 
+// }
 //       if(!userData.password){
 //         alert("password is required")
 //       }
@@ -86,7 +89,7 @@ const LoginPage = () => {
     <form onSubmit={handleSubmit(onSubmit)}>
       {/* <SignIn/> */}
       <label htmlFor="">Email</label>
-      <input  {...register("email",{required:"email is required",pattern:{value:/^[A-Za-z0-9._+]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/, message:"email is invalid"}})} type="email" />
+      <input  {...register("email",{required:"email is required",pattern:{value:/^[A-Za-z0-9._+]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/, message:"email is invalid"},minLength:{value:6,message:"password can not less tha 6"}})} type="email" />
 
       {errors.email && <span className='text-red-800'>{errors.email.message}</span>}
 
