@@ -9,7 +9,40 @@ const Home = () => {
   let ctx = useContext(cartContext);  //{cartArr:[],cartAdd:fn }
   console.log(ctx) //{cartArr:[], setcartArr:function}
 
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState([]); //[{},{},{},..194]
+  console.log(products)
+
+  // Pagination logic  
+        let itemPerPage = 10;
+        const [currentPage, setcurrentPage] = useState(1);
+        let lastIndex = currentPage * itemPerPage ; 
+        let firstIndex = lastIndex - itemPerPage;
+
+        let slicedItem = products.slice(firstIndex, lastIndex);
+        console.log(slicedItem)
+        let noOfButtons = Math.ceil( products.length / itemPerPage);  //20
+        let buttonArr = Array(noOfButtons).fill('');
+        console.log(buttonArr)
+
+        function handleNext(){
+            if(currentPage < noOfButtons ){
+              setcurrentPage(currentPage + 1);
+            }
+        }
+
+        function handlePrev(){
+
+        }
+
+        function handleButton(item){
+          
+            setcurrentPage(item)
+        }
+
+        
+
+        // Math.ceil , Math.floor ,Math.round(),  Math.random
+       
 
   const navigate = useNavigate();
 
@@ -21,6 +54,7 @@ const Home = () => {
       );
 
       let data = await res.json();
+      console.log(data)
 
       setProducts(data.products);
     } catch (error) {
@@ -217,7 +251,7 @@ const Home = () => {
         {/* Product Grid */}
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
 
-          {products.map((ele, i) => (
+          {slicedItem.map((ele, i) => (
 
             <div
               key={ele.id}
@@ -322,6 +356,16 @@ const Home = () => {
 
         </div>
 
+          <div onClick={handlePrev} className="flex justify-center mt-10">
+            <button className="bg-green-950 text-white hover:bg-green-700 px-1 py-1 rounded mr-1 min-w-5 ">Prev</button>
+          {
+            buttonArr.map((ele, i)=>{
+              return <button  onClick={()=>handleButton(i+1)} className={ currentPage==i+1 ?'bg-black text-white  px-1 py-1 rounded mr-1 min-w-5 ': `bg-blue-950 text-white hover:bg-blue-700 px-1 py-1 rounded mr-1 min-w-5 `}>{i+1}</button>
+            })
+          }
+          <button onClick={handleNext} className="bg-green-950 text-white hover:bg-green-700 px-1 py-1 rounded mr-1 min-w-5 ">Next</button>
+      </div>
+
       </section>
 
       {/* ================================================= */}
@@ -391,6 +435,8 @@ const Home = () => {
         </div>
 
       </section>
+
+    
 
     </div>
   );

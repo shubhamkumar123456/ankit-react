@@ -8,6 +8,7 @@ import ViewDetails from './pages/ViewDetails'
 import LoginPage from './pages/LoginPage'
 import SignupPage from './pages/SignupPage'
 import Layout from './pages/Layout'
+import Home1 from './pages/Home1'
 
 const App = () => {
   return (
@@ -19,7 +20,7 @@ const App = () => {
         <Route path="/" element={<Layout />}>
 
           {/* Home */}
-          <Route index element={<Home />} />
+          <Route index element={<Home1 />} />
 
           {/* About */}
           <Route path="xyz" element={<About />} />
