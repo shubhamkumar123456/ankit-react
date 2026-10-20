@@ -31,7 +31,9 @@ const Home = () => {
         }
 
         function handlePrev(){
-
+            if(currentPage > 1){
+              setcurrentPage(currentPage - 1)
+            }
         }
 
         function handleButton(item){
@@ -356,15 +358,25 @@ const Home = () => {
 
         </div>
 
-          <div onClick={handlePrev} className="flex justify-center mt-10">
-            <button className="bg-green-950 text-white hover:bg-green-700 px-1 py-1 rounded mr-1 min-w-5 ">Prev</button>
+          <div className="flex justify-center mt-10">
+            <button onClick={handlePrev} className="bg-green-950 text-white hover:bg-green-700 px-1 py-1 rounded mr-1 min-w-5 ">Prev</button>
           {
             buttonArr.map((ele, i)=>{
-              return <button  onClick={()=>handleButton(i+1)} className={ currentPage==i+1 ?'bg-black text-white  px-1 py-1 rounded mr-1 min-w-5 ': `bg-blue-950 text-white hover:bg-blue-700 px-1 py-1 rounded mr-1 min-w-5 `}>{i+1}</button>
+              // return <button  onClick={()=>handleButton(i+1)} className={ currentPage==i+1 ?'bg-black text-white  px-1 py-1 rounded mr-1 min-w-5 ': `bg-blue-950 text-white hover:bg-blue-700 px-1 py-1 rounded mr-1 min-w-5 `}>{i+1}</button>
+
+
+              return i+1>=currentPage && i+1<currentPage+5 && <button style={{margin:'1px'}} key={i+1} onClick={()=>setcurrentPage(i+1)} className={`${currentPage===i+1?'bg-green-400':'bg-white'} text-black rounded-md p-1 w-10`}>{i+1}</button>
             })
           }
+          {/* <div className="flex gap-2 font-semibold">
+            <span>.</span>
+            <span>.</span>
+            <span>.</span>
+          </div> */}
           <button onClick={handleNext} className="bg-green-950 text-white hover:bg-green-700 px-1 py-1 rounded mr-1 min-w-5 ">Next</button>
       </div>
+
+      
 
       </section>
 
