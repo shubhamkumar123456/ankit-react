@@ -11,13 +11,14 @@ import Layout from './pages/Layout'
 import Navbar from './components/Navbar'
 import CartPage from './pages/CartPage'
 import { ToastContainer } from 'react-toastify'
+import HomeInfinite from './pages/HomeInfinite'
 const App = () => {
   return (
     <BrowserRouter>
       <Navbar/>
       <Routes>
 
-        <Route path="/" element={<Home/>}/>
+        <Route path="/" element={<HomeInfinite/>}/>
         <Route path="/about" element={<About/>}/>
         <Route path="/login" element={<LoginPage/>}/>
         <Route path="/signup" element={<SignupPage/>}/>

@@ -29,7 +29,7 @@ const Home1 = () => {
 
    async function getAllProducts() {
     try {
-      if(products.length==0){
+      if(showProducts.length==0){
           let res = await fetch(
         `https://dummyjson.com/products?skip=0&limit=0`
       );

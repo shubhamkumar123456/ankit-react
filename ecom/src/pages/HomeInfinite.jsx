@@ -3,26 +3,43 @@ import React, { useContext, useEffect, useState } from "react";
 import ShowTrending from "../components/ShowTrending";
 import { Link, useNavigate } from "react-router-dom";
 import cartContext from "../context/cartContext";
+import InfiniteScroll from 'react-infinite-scroll-component';
 
 const HomeInfinite = () => {
 
   let ctx = useContext(cartContext);  //{cartArr:[],cartAdd:fn }
   console.log(ctx) //{cartArr:[], setcartArr:function}
 
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState([]); // [{}, {},{},...195]
+  const [skip, setskip] = useState(0);
+  const limit = 10;
+  const [slicedArr, setslicedArr] = useState([]);
+  const [hasMore, setHasMore] = useState(true);
 
   const navigate = useNavigate();
 
   // ================= GET PRODUCTS =================
   async function getAllProducts() {
     try {
-      let res = await fetch(
+        if(slicedArr.length==0){
+          let res = await fetch(
         "https://dummyjson.com/products?skip=0&limit=0"
       );
 
       let data = await res.json();
-
-      setProducts(data.products);
+      setProducts(data.products);// [ {}, {},{},..194]
+      setslicedArr(data.products.slice(skip, limit));
+        setskip(limit);
+        }
+        else{
+            if(slicedArr.length >= products.length){
+              setHasMore(false);
+            }
+            else{
+              setslicedArr([...slicedArr , ...products.slice(skip, skip+limit)]);
+              setskip(skip + limit);
+            }
+        }
     } catch (error) {
       console.log(error);
     }
@@ -47,9 +64,9 @@ const HomeInfinite = () => {
  
 
   // ================= USE EFFECT =================
-  useEffect(() => {
-    getAllProducts();
-  }, []);
+  // useEffect(() => {
+  //   getAllProducts();
+  // }, []);
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -215,9 +232,15 @@ const HomeInfinite = () => {
         </div>
 
         {/* Product Grid */}
-        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        <InfiniteScroll
+        dataLength={slicedArr.length}
+      next={getAllProducts}
+      hasMore={hasMore}
+      loader={<p>Loading...</p>}
+      endMessage={<p style={{ textAlign: 'center' }}>All items loaded.</p>}
+         className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
 
-          {products.map((ele, i) => (
+          {slicedArr.map((ele, i) => (
 
             <div
               key={ele.id}
@@ -320,7 +343,7 @@ const HomeInfinite = () => {
 
           ))}
 
-        </div>
+        </InfiniteScroll>
 
       </section>
 
