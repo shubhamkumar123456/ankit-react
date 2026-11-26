@@ -1,0 +1,1 @@
+// Redux -->  state management tool, it makes a global centralized store, it uses action and dispatch to update state
